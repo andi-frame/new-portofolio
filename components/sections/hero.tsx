@@ -44,10 +44,10 @@ export default function Hero() {
     >
       <div className="sticky top-0 h-screen w-full flex flex-col items-center justify-center overflow-hidden">
         
-        {/* Container for Intro & Rope*/}
+        {/* Container for Intro*/}
         <motion.div 
             style={{ opacity: opacityContainer, y: yContainer }}
-            className="relative w-full h-full flex flex-col items-center justify-center"
+            className="relative w-full h-full pt-28 flex flex-col items-center justify-center"
         >
 
             {/* Giant Clapperboard - Starts OPEN */}
@@ -64,14 +64,14 @@ export default function Hero() {
             >
             {/* Body */}
             <div className="absolute bottom-0 w-full h-[75%] bg-[#1c1c1c] rounded-b-xl overflow-hidden border-t-2 border-[#333] flex items-center justify-center ring-1 ring-neutral-900/5 relative group">
-                <div className="absolute bottom-4 right-4 flex gap-3 text-[10px] font-mono text-white/30">
-                    <span className="border border-white/20 px-1 rounded">ISO 800</span>
-                    <span className="border border-white/20 px-1 rounded">4K</span>
-                </div>
-                
                 <div className="text-white/30 font-mono text-center select-none">
-                    <div className="text-4xl md:text-6xl font-bold tracking-widest leading-none mb-4">CODE.</div>
+                    <div className="pt-10 text-4xl md:text-6xl font-bold tracking-widest leading-none mb-4">GO WITH</div>
                     <div className="text-sm md:text-base tracking-[0.5em] text-white/50">{profile.name.toUpperCase()}</div>
+                </div>
+
+                <div className="absolute bottom-4 right-4 flex gap-3 text-[10px] font-mono text-white/30">
+                    <span className="border border-white/20 px-1 rounded">High Efficiency</span>
+                    <span className="border border-white/20 px-1 rounded">High Performance</span>
                 </div>
             </div>
             
