@@ -23,7 +23,7 @@ export default function Experience() {
         className="mb-20 text-center"
       >
         <span className="text-xs font-bold tracking-[0.2em] text-neutral-400 uppercase mb-4 block">Track Record</span>
-        <h2 className="text-4xl md:text-5xl font-bold text-foreground">Professional Experience</h2>
+        <h2 className="text-4xl md:text-5xl font-bold text-foreground">Experiences</h2>
       </motion.div>
 
       <div className="relative w-full max-w-4xl mx-auto">

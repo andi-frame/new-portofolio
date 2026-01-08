@@ -8,9 +8,9 @@ import { Moon, Sun } from "lucide-react";
 
 const navLinks = [
   { name: "Home", to: "home" },
-  { name: "Process", to: "experience" },
-  { name: "Showcase", to: "projects" },
-  { name: "Profile", to: "about" },
+  { name: "Experience", to: "experience" },
+  { name: "Projects", to: "projects" },
+  { name: "About", to: "about" },
 ];
 
 export default function Navbar() {
