@@ -10,7 +10,7 @@ export default function Hero() {
   
   const { scrollYProgress } = useScroll({
     target: targetRef,
-    offset: ["start start", "end start"]
+    offset: ["start start", "end end"]
   });
 
   const smoothScroll = useSpring(scrollYProgress, { stiffness: 60, damping: 20 });
