@@ -64,22 +64,15 @@ export const profile: Profile = {
       institution: "Institut Teknologi Bandung (ITB)",
       degree: "Bachelor of Informatics",
       year: "2023 - 2027",
-      description: "Informatics Engineering",
+      description: "Informatics Engineering Student. Full scholarship awardee.",
     },
     {
       institution: "SMA Pradita Dirgantara",
       degree: "High School Diploma",
-      year: "Jul 2020 - May 2023",
-      description: "Full scholarship awardee. Participated in comparative studies with Sycamore High School, Northern Illinois University, Tennoji High School, and Chiba University.",
+      year: "2020 - 2023",
+      description: "Full scholarship awardee.",
     }
-  ],
-  licenses: [
-    { name: "Microsoft Office Specialist: Associate (Office 2019)", issuer: "Microsoft", date: "Jan 2023" },
-    { name: "Microsoft Office Specialist: PowerPoint Associate (Office 2019)", issuer: "Microsoft", date: "Jan 2023" },
-    { name: "MTA: Introduction to Programming Using Java", issuer: "Microsoft", date: "May 2022" },
-    { name: "Microsoft Office Specialist: Word Associate (Office 2019)", issuer: "Microsoft", date: "Mar 2022" },
-    { name: "Microsoft Office Specialist: Excel Associate (Office 2019)", issuer: "Microsoft", date: "Aug 2021" },
-  ],
+  ]
 };
 
 export const experiences: Experience[] = [
