@@ -105,10 +105,10 @@ export default function Experience() {
           viewport={{ once: true }}
           className="mb-20 text-center relative z-10"
         >
-        <span className="inline-block px-4 py-1.5 rounded-full bg-violet-500/10 text-violet-600 dark:text-violet-400 text-xs font-bold tracking-[0.2em] uppercase mb-4">
+        <span className="inline-block px-3 md:px-4 py-1 md:py-1.5 rounded-full bg-violet-500/10 text-violet-600 dark:text-violet-400 text-[10px] md:text-xs font-bold tracking-[0.15em] md:tracking-[0.2em] uppercase mb-3 md:mb-4">
           Track Record
         </span>
-        <h2 className="text-4xl md:text-5xl font-bold text-foreground">
+        <h2 className="text-3xl md:text-5xl font-bold text-foreground">
           Professional <span className="text-gradient">Experience</span>
         </h2>
       </motion.div>
@@ -165,23 +165,23 @@ export default function Experience() {
                       transition={{ type: "spring", stiffness: 300 }}
                     >
                       {/* Period Badge */}
-                      <span className="inline-block px-3 py-1 rounded-full bg-violet-50 dark:bg-violet-500/10 text-violet-600 dark:text-violet-400 text-xs font-mono mb-3">
+                      <span className="inline-block px-2 md:px-3 py-0.5 md:py-1 rounded-full bg-violet-50 dark:bg-violet-500/10 text-violet-600 dark:text-violet-400 text-[10px] md:text-xs font-mono mb-2 md:mb-3">
                         {exp.period}
                       </span>
                       
-                      <h3 className="text-xl font-bold text-foreground mb-1 group-hover:text-gradient transition-colors duration-300">
+                      <h3 className="text-lg md:text-xl font-bold text-foreground mb-1 group-hover:text-gradient transition-colors duration-300">
                         {exp.role}
                       </h3>
-                      <p className="text-muted-foreground font-medium text-sm mb-4 flex items-center gap-2">
-                        <Briefcase className="w-3.5 h-3.5" />
+                      <p className="text-muted-foreground font-medium text-xs md:text-sm mb-3 md:mb-4 flex items-center gap-2">
+                        <Briefcase className="w-3 md:w-3.5 h-3 md:h-3.5" />
                         {exp.company}
                       </p>
                       
                       {/* List with justified text */}
-                      <ul className="space-y-2 text-muted-foreground text-sm leading-relaxed mb-4">
+                      <ul className="space-y-1.5 md:space-y-2 text-muted-foreground text-xs md:text-sm leading-relaxed mb-3 md:mb-4">
                         {exp.description.slice(0, 2).map((desc, i) => (
                           <li key={i} className="flex items-start gap-2">
-                            <span className="w-1.5 h-1.5 rounded-full bg-violet-500 mt-2 flex-shrink-0" />
+                            <span className="w-1 md:w-1.5 h-1 md:h-1.5 rounded-full bg-violet-500 mt-1.5 md:mt-2 flex-shrink-0" />
                             <span className="text-justify">{desc}</span>
                           </li>
                         ))}
@@ -301,10 +301,10 @@ export default function Experience() {
                 </motion.button>
               </div>
               
-              <div className="px-8 pb-10">
-                <h3 className="text-3xl font-bold text-foreground mb-1">{selectedExp.role}</h3>
-                <p className="text-xl text-muted-foreground mb-8 flex items-center gap-2">
-                  <Briefcase className="w-5 h-5" />
+              <div className="px-6 md:px-8 pb-8 md:pb-10">
+                <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-1">{selectedExp.role}</h3>
+                <p className="text-lg md:text-xl text-muted-foreground mb-6 md:mb-8 flex items-center gap-2">
+                  <Briefcase className="w-4 md:w-5 h-4 md:h-5" />
                   {selectedExp.company}
                 </p>
                 

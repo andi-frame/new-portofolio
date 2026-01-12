@@ -198,10 +198,10 @@ export default function Hero() {
                             
                             {/* Content */}
                             <div className="text-center relative z-10">
-                                <h2 className="text-4xl md:text-5xl font-black tracking-tighter text-white">
+                                <h2 className="text-3xl md:text-5xl font-black tracking-tighter text-white">
                                     Go with <span className="text-gradient">Han</span>
                                 </h2>
-                                <p className="text-white/30 text-xs mt-4 font-mono uppercase tracking-widest">↓ Scroll to reveal ↓</p>
+                                <p className="text-white/30 text-[10px] md:text-xs mt-4 font-mono uppercase tracking-widest">↓ Scroll to reveal ↓</p>
                             </div>
                         </div>
                     </motion.div>
@@ -318,14 +318,14 @@ export default function Hero() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.2 }}
-                        className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-violet-500/10 text-violet-600 dark:text-violet-400 text-xs font-bold tracking-[0.2em] uppercase mb-6"
+                        className="inline-flex items-center gap-2 px-3 md:px-4 py-1 md:py-1.5 rounded-full bg-violet-500/10 text-violet-600 dark:text-violet-400 text-[10px] md:text-xs font-bold tracking-[0.15em] md:tracking-[0.2em] uppercase mb-4 md:mb-6"
                     >
                         {profile.role}
                     </motion.div>
-                    <h1 className="text-5xl md:text-8xl font-black tracking-tighter mb-8 leading-[0.9]">
+                    <h1 className="text-4xl md:text-8xl font-black tracking-tighter mb-6 md:mb-8 leading-[0.9]">
                         <span className="text-gradient">{profile.name}</span>
                     </h1>
-                    <p className="text-lg md:text-2xl text-muted-foreground font-serif italic max-w-4xl mx-auto leading-relaxed px-4">
+                    <p className="text-base md:text-2xl text-muted-foreground font-serif italic max-w-4xl mx-auto leading-relaxed px-4">
                         "{profile.hook}"
                     </p>
                 </div>

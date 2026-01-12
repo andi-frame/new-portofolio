@@ -39,16 +39,16 @@ export default function About() {
            viewport={{ once: true }}
            className="text-center"
         >
-          <span className="inline-block px-4 py-1.5 rounded-full bg-violet-500/10 text-violet-600 dark:text-violet-400 text-xs font-bold tracking-[0.2em] uppercase mb-8">
+          <span className="inline-block px-3 md:px-4 py-1 md:py-1.5 rounded-full bg-violet-500/10 text-violet-600 dark:text-violet-400 text-[10px] md:text-xs font-bold tracking-[0.15em] md:tracking-[0.2em] uppercase mb-6 md:mb-8">
             About Me
           </span>
           
-          <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-8 leading-tight">
+          <h2 className="text-2xl md:text-5xl font-bold text-foreground mb-6 md:mb-8 leading-tight">
             I am a <span className="text-gradient">Full-Stack Developer</span> <br />
             who builds <Typewriter words={["Scalable Systems", "Seamless UI/UX", "Robust Backends", "High-Performance Apps"]} />
           </h2>
 
-          <div className="flex flex-wrap justify-center gap-3 text-sm font-medium">
+          <div className="flex flex-wrap justify-center gap-2 md:gap-3 text-xs md:text-sm font-medium">
              {["Efficiency Obsessed", "Problem Solver", "Enthusiastic Learner"].map((trait, i) => (
                <motion.span 
                   key={trait}
@@ -56,7 +56,7 @@ export default function About() {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.1 }}
                   viewport={{ once: true }}
-                  className="px-5 py-2.5 bg-white dark:bg-neutral-900 rounded-full border border-neutral-200 dark:border-neutral-800 text-muted-foreground shadow-sm hover:shadow-md hover:border-violet-300 dark:hover:border-violet-700 transition-all duration-300"
+                  className="px-4 md:px-5 py-2 md:py-2.5 bg-white dark:bg-neutral-900 rounded-full border border-neutral-200 dark:border-neutral-800 text-muted-foreground shadow-sm hover:shadow-md hover:border-violet-300 dark:hover:border-violet-700 transition-all duration-300"
                >
                  {trait}
                </motion.span>
@@ -84,11 +84,11 @@ export default function About() {
                   whileHover={{ y: -2 }}
                 >
                   <div className="flex justify-between items-start mb-2">
-                    <p className="font-bold text-lg text-foreground">{edu.institution}</p>
-                    <span className="text-xs font-mono text-violet-500 dark:text-violet-400 bg-violet-50 dark:bg-violet-500/10 px-2 py-1 rounded">{edu.year}</span>
+                    <p className="font-bold text-base md:text-lg text-foreground">{edu.institution}</p>
+                    <span className="text-[10px] md:text-xs font-mono text-violet-500 dark:text-violet-400 bg-violet-50 dark:bg-violet-500/10 px-1.5 md:px-2 py-0.5 md:py-1 rounded">{edu.year}</span>
                   </div>
-                  <p className="text-muted-foreground italic text-sm mb-2">{edu.degree}</p>
-                  {edu.description && <p className="text-xs text-muted-foreground/80 leading-relaxed">{edu.description}</p>}
+                  <p className="text-muted-foreground italic text-xs md:text-sm mb-2">{edu.degree}</p>
+                  {edu.description && <p className="text-[10px] md:text-xs text-muted-foreground/80 leading-relaxed">{edu.description}</p>}
                 </motion.div>
             ))}
             </div>
@@ -102,11 +102,11 @@ export default function About() {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <div className="text-center mb-12">
-            <span className="inline-block px-4 py-1.5 rounded-full bg-violet-500/10 text-violet-600 dark:text-violet-400 text-xs font-bold tracking-[0.2em] uppercase mb-4">
+          <div className="text-center mb-8 md:mb-12">
+            <span className="inline-block px-3 md:px-4 py-1 md:py-1.5 rounded-full bg-violet-500/10 text-violet-600 dark:text-violet-400 text-[10px] md:text-xs font-bold tracking-[0.15em] md:tracking-[0.2em] uppercase mb-3 md:mb-4">
               Skills & Tools
             </span>
-            <h3 className="text-2xl md:text-3xl font-bold">
+            <h3 className="text-xl md:text-3xl font-bold">
               <span className="text-gradient">Technical Arsenal</span>
             </h3>
           </div>
@@ -122,9 +122,9 @@ export default function About() {
                 className="group p-5 rounded-2xl bg-white/50 dark:bg-neutral-900/50 border border-neutral-200/50 dark:border-neutral-800/50 hover:border-violet-300 dark:hover:border-violet-700 transition-all duration-300 hover:shadow-lg"
               >
                 {/* Category header with gradient accent */}
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-1 h-6 rounded-full bg-gradient-to-b from-violet-500 to-cyan-500" />
-                  <h4 className="text-sm font-bold uppercase tracking-widest text-foreground">
+                <div className="flex items-center gap-2 md:gap-3 mb-3 md:mb-4">
+                  <div className="w-0.5 md:w-1 h-5 md:h-6 rounded-full bg-gradient-to-b from-violet-500 to-cyan-500" />
+                  <h4 className="text-xs md:text-sm font-bold uppercase tracking-widest text-foreground">
                     {skillGroup.category}
                   </h4>
                 </div>
@@ -133,16 +133,16 @@ export default function About() {
                 <div className="flex flex-wrap gap-2">
                   {skillGroup.items.map((skill) => {
                      const Icon = getSkillIcon(skill);
-                     return (
+                       return (
                         <motion.span 
                           key={skill} 
-                          className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-neutral-100 dark:bg-neutral-800 text-foreground rounded-lg text-xs font-medium border border-transparent hover:border-violet-300 dark:hover:border-violet-700 transition-all duration-300"
+                          className="inline-flex items-center gap-1 md:gap-1.5 px-2 md:px-3 py-1 md:py-1.5 bg-neutral-100 dark:bg-neutral-800 text-foreground rounded-lg text-[10px] md:text-xs font-medium border border-transparent hover:border-violet-300 dark:hover:border-violet-700 transition-all duration-300"
                           whileHover={{ scale: 1.05, y: -2 }}
                         >
-                          {Icon && <Icon className="w-3.5 h-3.5 text-violet-500" />}
+                          {Icon && <Icon className="w-3 md:w-3.5 h-3 md:h-3.5 text-violet-500" />}
                           {skill}
                         </motion.span>
-                     );
+                       );
                   })}
                 </div>
             </motion.div>
@@ -187,9 +187,9 @@ function Typewriter({ words }: { words: string[] }) {
   }, [subIndex, index, reverse, words]);
 
   return (
-    <span className="inline-block min-w-[150px] md:min-w-[200px] text-left">
+    <span className="inline-block min-w-[120px] md:min-w-[200px] text-left">
       <span className="text-gradient">{words[index].substring(0, subIndex)}</span>
-      <span className={`inline-block w-0.5 h-8 md:h-12 bg-violet-500 ml-1 ${blink ? 'opacity-100' : 'opacity-0'} transition-opacity`} />
+      <span className={`inline-block w-0.5 h-6 md:h-12 bg-violet-500 ml-1 ${blink ? 'opacity-100' : 'opacity-0'} transition-opacity`} />
     </span>
   );
 }

@@ -76,10 +76,10 @@ export default function Projects() {
           viewport={{ once: true }}
           className="mb-20 text-center"
         >
-          <span className="inline-block px-4 py-1.5 rounded-full bg-violet-500/10 text-violet-600 dark:text-violet-400 text-xs font-bold tracking-[0.2em] uppercase mb-4">
+          <span className="inline-block px-3 md:px-4 py-1 md:py-1.5 rounded-full bg-violet-500/10 text-violet-600 dark:text-violet-400 text-[10px] md:text-xs font-bold tracking-[0.15em] md:tracking-[0.2em] uppercase mb-3 md:mb-4">
             Showcase
           </span>
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground">
+          <h2 className="text-3xl md:text-5xl font-bold text-foreground">
             Selected <span className="text-gradient">Works</span>
           </h2>
         </motion.div>
@@ -110,14 +110,14 @@ export default function Projects() {
               <motion.button 
                 key="more"
                 onClick={handleShowMore}
-                className="group inline-flex items-center gap-2 px-8 py-4 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-full text-sm font-bold uppercase tracking-widest hover:border-violet-300 dark:hover:border-violet-700 transition-all shadow-sm hover:shadow-lg"
+                className="group inline-flex items-center gap-2 px-6 md:px-8 py-3 md:py-4 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-full text-xs md:text-sm font-bold uppercase tracking-widest hover:border-violet-300 dark:hover:border-violet-700 transition-all shadow-sm hover:shadow-lg"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                See More Projects <ChevronDown className="w-4 h-4 group-hover:translate-y-1 transition-transform" />
+                See More Projects <ChevronDown className="w-3 md:w-4 h-3 md:h-4 group-hover:translate-y-1 transition-transform" />
               </motion.button>
             ) : (
               <motion.a 
@@ -125,7 +125,7 @@ export default function Projects() {
                 href="https://github.com/andi-frame" 
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-violet-500 to-cyan-500 text-white rounded-full text-sm font-bold uppercase tracking-widest hover:opacity-90 transition-all shadow-lg hover:shadow-xl"
+                className="group inline-flex items-center gap-2 md:gap-3 px-6 md:px-8 py-3 md:py-4 bg-gradient-to-r from-violet-500 to-cyan-500 text-white rounded-full text-xs md:text-sm font-bold uppercase tracking-widest hover:opacity-90 transition-all shadow-lg hover:shadow-xl"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
@@ -133,7 +133,7 @@ export default function Projects() {
                 whileTap={{ scale: 0.95 }}
               >
                 View All on GitHub 
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="w-3 md:w-4 h-3 md:h-4 group-hover:translate-x-1 transition-transform" />
               </motion.a>
             )}
           </AnimatePresence>
@@ -159,8 +159,8 @@ export default function Projects() {
                 className="relative bg-background w-full max-w-5xl max-h-[90vh] overflow-hidden rounded-3xl border border-neutral-200 dark:border-neutral-800 shadow-2xl flex flex-col"
              >
                 {/* Header Image Area */}
-                <div className="relative h-64 md:h-80 w-full overflow-hidden bg-gradient-to-br from-violet-500/20 to-cyan-500/20 group">
-                    <div className="absolute inset-0 flex items-center justify-center text-neutral-400 font-mono text-lg uppercase tracking-widest">
+                <div className="relative h-48 md:h-80 w-full overflow-hidden bg-gradient-to-br from-violet-500/20 to-cyan-500/20 group">
+                    <div className="absolute inset-0 flex items-center justify-center text-neutral-400 font-mono text-sm md:text-lg uppercase tracking-widest">
                         {selectedProject.images?.[0] || "Project Preview"}
                     </div>
                     <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-90" />
@@ -177,19 +177,19 @@ export default function Projects() {
                 
                 <div className="flex-1 overflow-y-auto p-8 md:p-12">
                    <div className="max-w-3xl mx-auto">
-                        <motion.h3 layoutId={`title-${selectedProject.id}`} className="text-3xl md:text-5xl font-bold text-foreground mb-4 leading-tight">
+                        <motion.h3 layoutId={`title-${selectedProject.id}`} className="text-2xl md:text-5xl font-bold text-foreground mb-3 md:mb-4 leading-tight">
                             {selectedProject.title}
                         </motion.h3>
                         
-                        <div className="flex flex-wrap gap-2 mb-8">
+                        <div className="flex flex-wrap gap-1.5 md:gap-2 mb-6 md:mb-8">
                             {selectedProject.techStack.map(tech => (
-                                <span key={tech} className="px-3 py-1.5 bg-violet-50 dark:bg-violet-500/10 text-violet-600 dark:text-violet-400 rounded-lg text-xs font-medium uppercase tracking-wider">
+                                <span key={tech} className="px-2 md:px-3 py-1 md:py-1.5 bg-violet-50 dark:bg-violet-500/10 text-violet-600 dark:text-violet-400 rounded-lg text-[10px] md:text-xs font-medium uppercase tracking-wider">
                                     {tech}
                                 </span>
                             ))}
                         </div>
 
-                        <div className="prose dark:prose-invert max-w-none text-muted-foreground leading-relaxed text-lg mb-10">
+                        <div className="prose dark:prose-invert max-w-none text-muted-foreground leading-relaxed text-base md:text-lg mb-8 md:mb-10">
                             <p>{selectedProject.description}</p>
                             <p className="mt-4">
                                 This project demonstrates advanced capabilities in {selectedProject.techStack.slice(0,3).join(", ")}. 
@@ -203,22 +203,22 @@ export default function Projects() {
                                   href={selectedProject.link}
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  className="inline-flex justify-center items-center gap-2 px-8 py-4 bg-gradient-to-r from-violet-500 to-cyan-500 text-white rounded-full text-sm font-bold uppercase tracking-widest hover:opacity-90 transition-all shadow-lg"
+                                  className="inline-flex justify-center items-center gap-2 px-6 md:px-8 py-3 md:py-4 bg-gradient-to-r from-violet-500 to-cyan-500 text-white rounded-full text-xs md:text-sm font-bold uppercase tracking-widest hover:opacity-90 transition-all shadow-lg"
                                   whileHover={{ scale: 1.05 }}
                                   whileTap={{ scale: 0.95 }}
                                 >
-                                  Visit Project <ExternalLink className="w-4 h-4" />
+                                  Visit Project <ExternalLink className="w-3 md:w-4 h-3 md:h-4" />
                                 </motion.a>
                             )}
                             <motion.a 
                               href="https://github.com/andi-frame"
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="inline-flex justify-center items-center gap-2 px-8 py-4 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 text-foreground rounded-full text-sm font-bold uppercase tracking-widest hover:border-violet-300 dark:hover:border-violet-700 transition-all"
+                              className="inline-flex justify-center items-center gap-2 px-6 md:px-8 py-3 md:py-4 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 text-foreground rounded-full text-xs md:text-sm font-bold uppercase tracking-widest hover:border-violet-300 dark:hover:border-violet-700 transition-all"
                               whileHover={{ scale: 1.05 }}
                               whileTap={{ scale: 0.95 }}
                             >
-                              <Github className="w-4 h-4" /> View Source
+                              <Github className="w-3 md:w-4 h-3 md:h-4" /> View Source
                             </motion.a>
                         </div>
                    </div>
@@ -287,10 +287,10 @@ function ProjectCard({ project, index, onOpen }: { project: typeof projects[0], 
       {/* Content Side */}
       <div className="w-full md:w-2/5 md:py-8">
         <motion.div style={{ y }}>
-          <motion.h3 layoutId={`title-${project.id}`} className="text-2xl md:text-3xl font-bold mb-4 text-foreground leading-tight group-hover/card:text-gradient transition-all duration-300">
+          <motion.h3 layoutId={`title-${project.id}`} className="text-xl md:text-3xl font-bold mb-3 md:mb-4 text-foreground leading-tight group-hover/card:text-gradient transition-all duration-300">
             {project.title}
           </motion.h3>
-          <p className="text-muted-foreground leading-relaxed mb-6 line-clamp-3">
+          <p className="text-muted-foreground leading-relaxed mb-4 md:mb-6 line-clamp-3 text-sm md:text-base">
             {project.description}
           </p>
           
@@ -305,8 +305,8 @@ function ProjectCard({ project, index, onOpen }: { project: typeof projects[0], 
             )}
           </div>
 
-          <span className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-muted-foreground group-hover/card:text-violet-500 transition-colors">
-            View Details <ArrowRight className="w-4 h-4 group-hover/card:translate-x-1 transition-transform" />
+          <span className="inline-flex items-center gap-2 text-xs md:text-sm font-bold uppercase tracking-widest text-muted-foreground group-hover/card:text-violet-500 transition-colors">
+            View Details <ArrowRight className="w-3 md:w-4 h-3 md:h-4 group-hover/card:translate-x-1 transition-transform" />
           </span>
         </motion.div>
       </div>

@@ -33,10 +33,10 @@ export default function Footer() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-2xl md:text-3xl font-black tracking-tight mb-2">
+              <h2 className="text-xl md:text-3xl font-black tracking-tight mb-2">
                 <span className="text-gradient">{profile.name.toUpperCase()}</span>
               </h2>
-              <p className="text-muted-foreground text-sm uppercase tracking-[0.2em]">
+              <p className="text-muted-foreground text-[10px] md:text-sm uppercase tracking-[0.15em] md:tracking-[0.2em]">
                 {profile.role}
               </p>
             </motion.div>
@@ -68,7 +68,7 @@ export default function Footer() {
             {/* CTA */}
             <motion.a
               href={socialLinks.email}
-              className="group inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-violet-500 to-cyan-500 text-white rounded-full text-sm font-bold uppercase tracking-widest hover:opacity-90 transition-all shadow-lg"
+              className="group inline-flex items-center gap-1.5 md:gap-2 px-5 md:px-6 py-2.5 md:py-3 bg-gradient-to-r from-violet-500 to-cyan-500 text-white rounded-full text-[10px] md:text-sm font-bold uppercase tracking-widest hover:opacity-90 transition-all shadow-lg"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -77,7 +77,7 @@ export default function Footer() {
               whileTap={{ scale: 0.95 }}
             >
               Let's Work Together
-              <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+              <ArrowUpRight className="w-3 md:w-4 h-3 md:h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </motion.a>
 
             {/* Divider */}
