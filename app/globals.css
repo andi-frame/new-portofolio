@@ -2,29 +2,145 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  /* Soft White Background */
-  --background: #F9FAFB; 
-  /* Gray-950 text for high contrast */
-  --foreground: #030712;
+  /* Base Colors */
+  --background: #f5f5f4;
+  --foreground: #292524;
   
-  --muted: #4B5563;
-  --muted-foreground: #6B7280;
+  --muted: #78716c;
+  --muted-foreground: #a8a29e;
   
-  --border: #E5E7EB;
-  --card: #FFFFFF;
+  --border: #e7e5e4;
+  --card: #fafaf9;
+  
+  /* Primary Accent - Violet */
+  --accent: #8b5cf6;
+  --accent-foreground: #ffffff;
+  --accent-light: #a78bfa;
+  --accent-dark: #7c3aed;
+  
+  /* Secondary Accent - Cyan */
+  --accent-secondary: #06b6d4;
+  --accent-secondary-light: #22d3ee;
+  --accent-secondary-dark: #0891b2;
+  
+  /* Tertiary Colors */
+  --pink: #ec4899;
+  --pink-light: #f472b6;
+  --purple: #a855f7;
+  --blue: #3b82f6;
+  --rose: #f43f5e;
+  
+  /* Gradient stops */
+  --gradient-start: #8b5cf6;
+  --gradient-end: #06b6d4;
+  
+  /* Terminal Theme Colors */
+  --terminal-bg: #1e1e2e;
+  --terminal-header: #181825;
+  --terminal-border: #313244;
+  --terminal-red: #f38ba8;
+  --terminal-yellow: #fab387;
+  --terminal-green: #a6e3a1;
+  --terminal-purple: #c792ea;
+  --terminal-green-text: #c3e88d;
+  --terminal-cyan: #89ddff;
+  --terminal-orange: #f78c6c;
+  --terminal-blue: #82aaff;
+  
+  /* Cat Cursor Colors (Light Mode) */
+  --cat-body: #d1d5db;
+  --cat-body-light: #e5e7eb;
+  --cat-legs: #9ca3af;
+  --cat-paws: #d1d5db;
+  --cat-far-legs: #7f858c;
+  --cat-far-paws: #a8adb3;
+  --cat-cheeks: #e5e7eb;
+  --cat-highlight: #e5e7eb;
+  --cat-ears: #9ca3af;
+  --cat-whiskers: #9ca3af;
+  --cat-nose: #f472b6;
+  --cat-inner-ear: #fda4af;
+  --cat-eyes: #4b5563;
+  --cat-pupil: #1f2937;
+  
+  /* Neutral grays */
+  --neutral-50: #fafafa;
+  --neutral-100: #f5f5f5;
+  --neutral-200: #e5e5e5;
+  --neutral-700: #404040;
+  --neutral-800: #262626;
+  --neutral-900: #171717;
 }
 
-[data-theme='dark'], .dark {
-  /* Gray-900 Background */
-  --background: #111827; 
-  /* Gray-50 text */
-  --foreground: #F9FAFB;
+.dark {
+  /* Base Colors */
+  --background: #0a0a0f;
+  --foreground: #e5e7eb;
   
-  --muted: #9CA3AF;
-  --muted-foreground: #D1D5DB;
+  --muted: #6b7280;
+  --muted-foreground: #9ca3af;
   
-  --border: #374151;
-  --card: #1F2937;
+  --border: #1f2937;
+  --card: #111118;
+  
+  /* Primary Accent - Violet */
+  --accent: #a78bfa;
+  --accent-foreground: #0a0a0f;
+  --accent-light: #c4b5fd;
+  --accent-dark: #8b5cf6;
+  
+  /* Secondary Accent - Cyan */
+  --accent-secondary: #22d3ee;
+  --accent-secondary-light: #67e8f9;
+  --accent-secondary-dark: #06b6d4;
+  
+  /* Tertiary Colors */
+  --pink: #f472b6;
+  --pink-light: #f9a8d4;
+  --purple: #c084fc;
+  --blue: #60a5fa;
+  --rose: #fb7185;
+  
+  /* Gradient stops */
+  --gradient-start: #a78bfa;
+  --gradient-end: #22d3ee;
+  
+  /* Terminal Theme (same in dark) */
+  --terminal-bg: #1e1e2e;
+  --terminal-header: #181825;
+  --terminal-border: #313244;
+  --terminal-red: #f38ba8;
+  --terminal-yellow: #fab387;
+  --terminal-green: #a6e3a1;
+  --terminal-purple: #c792ea;
+  --terminal-green-text: #c3e88d;
+  --terminal-cyan: #89ddff;
+  --terminal-orange: #f78c6c;
+  --terminal-blue: #82aaff;
+  
+  /* Cat Cursor Colors (Dark Mode) */
+  --cat-body: #4b5563;
+  --cat-body-light: #6b7280;
+  --cat-legs: #374151;
+  --cat-paws: #4b5563;
+  --cat-far-legs: #1f2937;
+  --cat-far-paws: #374151;
+  --cat-cheeks: #4b5563;
+  --cat-highlight: #6b7280;
+  --cat-ears: #374151;
+  --cat-whiskers: #6b7280;
+  --cat-nose: #f472b6;
+  --cat-inner-ear: #fda4af;
+  --cat-eyes: #4b5563;
+  --cat-pupil: #1f2937;
+  
+  /* Neutral grays */
+  --neutral-50: #fafafa;
+  --neutral-100: #f5f5f5;
+  --neutral-200: #e5e5e5;
+  --neutral-700: #404040;
+  --neutral-800: #262626;
+  --neutral-900: #171717;
 }
 
 @theme inline {
@@ -34,12 +150,110 @@
   --color-muted-foreground: var(--muted-foreground);
   --color-border: var(--border);
   --color-card: var(--card);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent-secondary: var(--accent-secondary);
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
   overflow-x: hidden;
   width: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Better selection colors */
+::selection {
+  background-color: var(--accent);
+  color: var(--accent-foreground);
+}
+
+/* Gradient text utility */
+.text-gradient {
+  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glassmorphism card */
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dark .glass {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Gradient border effect */
+.gradient-border {
+  position: relative;
+}
+
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.gradient-border:hover::before {
+  opacity: 1;
+}
+
+/* Glow effect */
+.glow {
+  box-shadow: 0 0 40px -10px var(--accent);
+}
+
+/* Animated gradient background */
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient-shift 8s ease infinite;
+}
+
+/* Subtle floating animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Pulse glow animation */
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.05); }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 4s ease-in-out infinite;
 }
