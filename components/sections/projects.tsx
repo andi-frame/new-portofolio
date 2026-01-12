@@ -260,7 +260,7 @@ function ProjectCard({ project, index, onOpen }: { project: typeof projects[0], 
       ref={cardRef}
       layoutId={`project-${project.id}`}
       onClick={onOpen}
-      className={`group/card flex flex-col md:flex-row gap-12 items-center cursor-pointer p-6 md:p-8 rounded-3xl hover:bg-white/50 dark:hover:bg-neutral-900/50 transition-all duration-500 ${index % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}
+      className={`group/card flex flex-col md:flex-row gap-12 items-center cursor-pointer p-6 md:p-8 rounded-3xl bg-white/60 dark:bg-neutral-900/60 border border-neutral-200/50 dark:border-neutral-800/50 hover:bg-white/80 dark:hover:bg-neutral-800/80 hover:border-violet-300/50 dark:hover:border-violet-700/50 shadow-sm hover:shadow-xl transition-all duration-500 ${index % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}
     >
       <div className="w-full md:w-3/5">
         <motion.div 
