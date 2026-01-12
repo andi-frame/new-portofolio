@@ -1,29 +1,47 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { ReactNode } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { ReactNode, useRef } from "react";
 
 interface SectionProps {
   children: ReactNode;
   className?: string;
   id?: string;
-  delay?: number;
+  fullWidth?: boolean;
+  noPadding?: boolean;
 }
 
-export default function Section({ children, className = "", id, delay = 0 }: SectionProps) {
+export default function Section({ children, className = "", id, fullWidth = false, noPadding = false }: SectionProps) {
+  const ref = useRef<HTMLElement>(null);
+  
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"]
+  });
+  
+  // Subtle parallax and reveal effects
+  const opacity = useTransform(scrollYProgress, [0, 0.1, 0.9, 1], [0.5, 1, 1, 0.9]);
+  const y = useTransform(scrollYProgress, [0, 0.1, 0.9, 1], [30, 0, 0, -15]);
+
   return (
     <motion.section
+      ref={ref}
       id={id}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ margin: "-10% 0px -10% 0px", once: false }} // Replay animation when scrolling back
-      variants={{
-        hidden: { opacity: 0 },
-        visible: { opacity: 1, transition: { duration: 0.8, staggerChildren: 0.2, delayChildren: delay } }
-      }}
-      className={`py-20 md:py-32 px-6 md:px-12 max-w-5xl mx-auto flex flex-col items-center text-center transition-colors duration-300 ${className}`}
+      style={{ opacity, y }}
+      className={`w-full transition-colors duration-300 ${
+        noPadding ? '' : 'py-16 md:py-24'
+      } ${
+        fullWidth 
+          ? 'px-0' 
+          : 'px-6 md:px-12'
+      } ${className}`}
     >
-      {children}
+      {!fullWidth && (
+        <div className="max-w-5xl mx-auto w-full flex flex-col items-center text-center">
+          {children}
+        </div>
+      )}
+      {fullWidth && children}
     </motion.section>
   );
 }
