@@ -3,7 +3,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
-import { Moon, Sun, Sparkles, Menu, X } from "lucide-react";
+import { Moon, Sun, Menu, X } from "lucide-react";
 
 const navLinks = [
   { name: "Home", to: "home" },
@@ -72,15 +72,6 @@ export default function Navbar() {
            : "bg-white/30 dark:bg-neutral-900/30 backdrop-blur-sm border-transparent"
         }`}
       >
-        {/* Logo/Brand */}
-        <motion.div 
-          className="px-3 py-1.5 rounded-full bg-gradient-to-r from-violet-500 to-cyan-500 text-white"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          <Sparkles className="w-4 h-4" />
-        </motion.div>
-
         {/* Desktop Nav Links */}
         <ul className="hidden md:flex items-center">
           {navLinks.map((link) => (

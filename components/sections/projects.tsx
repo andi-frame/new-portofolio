@@ -5,7 +5,7 @@ import Section from "@/components/ui/section";
 import SectionBackground from "@/components/ui/section-background";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { useRef, useState } from "react";
-import { ExternalLink, Github, ChevronDown, ArrowRight, Eye, X, Sparkles } from "lucide-react";
+import { ExternalLink, Github, ChevronDown, ArrowRight, Eye, X } from "lucide-react";
 
 export default function Projects() {
   const [visibleCount, setVisibleCount] = useState(2);
@@ -132,7 +132,6 @@ export default function Projects() {
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Sparkles className="w-4 h-4" />
                 View All on GitHub 
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </motion.a>

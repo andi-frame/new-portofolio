@@ -3,7 +3,7 @@
 import { profile } from "@/lib/data";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { useRef } from "react";
-import { ArrowDown, Sparkles, Terminal } from "lucide-react";
+import { ArrowDown, Terminal } from "lucide-react";
 
 export default function Hero() {
   const targetRef = useRef<HTMLDivElement>(null);
@@ -47,10 +47,8 @@ export default function Hero() {
     { text: 'const developer = {', color: 'var(--terminal-purple)' },
     { text: `  name: "${profile.name}",`, color: 'var(--terminal-green-text)' },
     { text: '  passion: "Building great things",', color: 'var(--terminal-green-text)' },
-    { text: '  skills: ["React", "TypeScript", "Go"],', color: 'var(--terminal-cyan)' },
     { text: '  coffee: Infinity,', color: 'var(--terminal-orange)' },
     { text: '};', color: 'var(--terminal-purple)' },
-    { text: '', color: '' },
     { text: 'export default developer;', color: 'var(--terminal-blue)' },
   ];
 
@@ -78,7 +76,7 @@ export default function Hero() {
                     position: "absolute",
                     zIndex: 20
                 }} 
-                className="w-[380px] md:w-[520px]"
+                className="w-[300px] md:w-[520px]"
             >
                 {/* Perspective container for flip */}
                 <div style={{ perspective: "1200px", transformStyle: "preserve-3d" }}>
@@ -151,7 +149,7 @@ export default function Hero() {
                                                 initial={{ opacity: 0, x: -10 }}
                                                 animate={{ opacity: 1, x: 0 }}
                                                 transition={{ delay: i * 0.15, duration: 0.3 }}
-                                                className="leading-7 flex items-center"
+                                                className="leading-7 flex items-center text-xs md:text-lg"
                                                 style={{ color: line.color || '#cdd6f4' }}
                                             >
                                                 {line.text}
@@ -322,7 +320,6 @@ export default function Hero() {
                         transition={{ delay: 0.2 }}
                         className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-violet-500/10 text-violet-600 dark:text-violet-400 text-xs font-bold tracking-[0.2em] uppercase mb-6"
                     >
-                        <Sparkles className="w-3 h-3" />
                         {profile.role}
                     </motion.div>
                     <h1 className="text-5xl md:text-8xl font-black tracking-tighter mb-8 leading-[0.9]">

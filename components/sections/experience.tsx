@@ -209,16 +209,13 @@ export default function Experience() {
               ))}
             </AnimatePresence>
           </div>
-          
-          {/* Timeline end - fade out at bottom of cards */}
-          <div className="absolute left-0 md:left-1/2 bottom-0 md:transform md:-translate-x-1/2 ml-[11px] md:ml-0 h-8 w-1 bg-gradient-to-b from-neutral-200 dark:from-neutral-800 to-transparent rounded-full" />
         </div>
         
-        {/* Show More/Less Button - OUTSIDE and BELOW timeline */}
+        {/* Show More/Less Button*/}
         {experiences.length > initialCount && (
           <motion.div 
             ref={buttonContainerRef}
-            className="mt-16 flex justify-center"
+            className="flex justify-center"
             layout
             transition={{ 
               type: "spring", 
