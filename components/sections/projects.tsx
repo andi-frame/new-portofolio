@@ -341,54 +341,17 @@ function ProjectModal({ project, onClose }: { project: Project, onClose: () => v
         exit={{ opacity: 0, scale: 0.95, y: 20 }}
         className="relative bg-background w-full max-w-5xl max-h-[90vh] overflow-hidden rounded-3xl border border-neutral-200 dark:border-neutral-800 shadow-2xl flex flex-col"
       >
-        {/* Header Image Area with Carousel */}
-        <div className="relative h-48 md:h-80 w-full overflow-hidden bg-neutral-100 dark:bg-neutral-900 group">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={currentImage}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="absolute inset-0"
-            >
-              <Image
-                src={images[currentImage]}
-                alt={`${project.title} screenshot ${currentImage + 1}`}
-                fill
-                className="object-cover"
-                style={{ objectPosition: `center ${headerY}` }}
-                sizes="(max-width: 1024px) 100vw, 1024px"
-                priority
-              />
-            </motion.div>
-          </AnimatePresence>
-          
-          {/* Navigation Arrows */}
-          {images.length > 1 && (
-            <>
-              <button
-                onClick={() => setCurrentImage((prev) => (prev - 1 + images.length) % images.length)}
-                className="absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-black/50 text-white opacity-0 group-hover:opacity-100 transition-opacity hover:bg-black/70 z-10"
-              >
-                <ChevronLeft className="w-5 h-5" />
-              </button>
-              <button
-                onClick={() => setCurrentImage((prev) => (prev + 1) % images.length)}
-                className="absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-black/50 text-white opacity-0 group-hover:opacity-100 transition-opacity hover:bg-black/70 z-10"
-              >
-                <ChevronRight className="w-5 h-5" />
-              </button>
-            </>
-          )}
-          
-          {/* Zoom Button */}
-          <button
-            onClick={() => openLightbox(currentImage)}
-            className="absolute bottom-4 right-4 p-3 rounded-full bg-black/50 text-white opacity-0 group-hover:opacity-100 transition-opacity hover:bg-black/70 z-10"
-          >
-            <ZoomIn className="w-5 h-5" />
-          </button>
+        {/* Header Image Area */}
+        <div className="relative h-48 md:h-80 w-full overflow-hidden bg-neutral-100 dark:bg-neutral-900">
+          <Image
+            src={images[project.headerImage - 1]}
+            alt={`${project.title} header`}
+            fill
+            className="object-cover"
+            style={{ objectPosition: `center ${headerY}` }}
+            sizes="(max-width: 1024px) 100vw, 1024px"
+            priority
+          />
           
           <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-90" />
           
@@ -398,13 +361,8 @@ function ProjectModal({ project, onClose }: { project: Project, onClose: () => v
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
           >
-            <X className="w-5 h-5" />
+            <X className="w-5 h-5 text-gray-600" />
           </motion.button>
-          
-          {/* Image Counter */}
-          <div className="absolute top-4 left-4 px-3 py-1.5 rounded-full bg-black/50 text-white text-xs font-medium z-10">
-            {currentImage + 1} / {images.length}
-          </div>
         </div>
         
         <div className="flex-1 overflow-y-auto p-8 md:p-12">
