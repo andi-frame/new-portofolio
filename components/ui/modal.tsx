@@ -49,11 +49,11 @@ export default function ProjectModal({ isOpen, onClose, project }: ModalProps) {
              <div className="flex-1 overflow-y-auto">
                <div className="h-64 md:h-96 relative bg-muted">
                   {/* Image Placeholder */}
-                  <div className="absolute inset-0 flex items-center justify-center text-muted-foreground">
-                     [Project Images Carousel Placeholder]
-                     <br/>
-                     {project.images[0]}
-                  </div>
+                   <div className="absolute inset-0 flex items-center justify-center text-muted-foreground">
+                      [Project Images Carousel Placeholder]
+                      <br/>
+                      {`/projects/${project.slug}/${project.thumbnailImage}.webp`}
+                   </div>
                </div>
                
                <div className="p-8 bg-card text-foreground">
