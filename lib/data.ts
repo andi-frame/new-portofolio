@@ -33,11 +33,16 @@ export interface Experience {
 
 export interface Project {
   id: string;
+  slug: string;
+  order: number;
   title: string;
   description: string;
   techStack: string[];
   link?: string;
-  images: string[];
+  imageCount: number;
+  thumbnailImage: number;
+  headerImage: number;
+  headerImageY?: string; // top, center, bottom, 30%, etc.
 }
 
 export interface Skill {
@@ -86,7 +91,7 @@ export const experiences: Experience[] = [
       "Ensuring robust system architecture for student government digital services.",
     ],
     skills: ["Leadership", "Back-End Architecture", "System Design"],
-    hasDetail: true,
+    hasDetail: false,
     images: ["merem_ui.png", "nobazir_home.png"],
   },
   {
@@ -125,7 +130,7 @@ export const experiences: Experience[] = [
       "Coordinated live recording of the parade.",
     ],
     skills: ["Leadership", "Systems Design", "Full-Stack", "Web Design", "Camera Op"],
-    hasDetail: true,
+    hasDetail: false,
     images: ["kpu_vote.png"],
   },
   {
@@ -198,36 +203,56 @@ export const experiences: Experience[] = [
 
 export const projects: Project[] = [
   {
-    id: "MereM",
+    id: "merem",
+    slug: "merem",
+    order: 1,
     title: "MereM (Car Rental App)",
     description: "A comprehensive application designed to streamline car rental business operations. Features include unit management, transaction recording, rental history, customer data, and notifications for returns/payments. Built using MVC pattern with Python (PyQt6) and SQLite.",
     techStack: ["Python", "PyQt6", "SQLite", "MVC", "QT Designer"],
     link: "https://github.com/andi-frame/IF2150-2024-K03-G05-MereM",
-    images: ["merem_ui.png"],
+    imageCount: 15,
+    thumbnailImage: 1,
+    headerImage: 1,
+    headerImageY: "center",
   },
   {
-    id: "KPU_Pharmacy",
+    id: "kpu-unpad-2024",
+    slug: "kpu-unpad-2024",
+    order: 2,
     title: "Web KPU Pharmacy UNPAD",
     description: "Voting website for BEM and BPM elections at Unpad Pharmacy Faculty. Features token-based voting, paginated candidate display, and real-time admin dashboard. Served 495 users with security safeguards.",
     techStack: ["T3 Stack", "Next.js", "tRPC", "Supabase", "Drizzle", "Zod", "Zustand"],
     link: "",
-    images: ["kpu_vote.png"],
+    imageCount: 16,
+    thumbnailImage: 1,
+    headerImage: 1,
+    headerImageY: "top",
   },
   {
-    id: "NoBazir",
+    id: "nobazir",
+    slug: "nobazir",
+    order: 3,
     title: "NoBazir",
     description: "A web app designed to reduce food waste by connecting merchants with customers for surplus food (LeftOver). Features include a marketplace, community platform, calorie tracker, and seller center.",
     techStack: ["T3 Stack", "Next.js", "Firebase", "Supabase", "React.js", "Tailwind"],
     link: "https://lnkd.in/g-HeJ6Bs",
-    images: ["nobazir_home.png"],
+    imageCount: 10,
+    thumbnailImage: 1,
+    headerImage: 1,
+    headerImageY: "center",
   },
   {
-    id: "MACA",
+    id: "maca",
+    slug: "maca",
+    order: 4,
     title: "MACA (AI Reading App)",
     description: "AI-powered tool that scans PDF books and transforms them into text and audio. Uses Tesseract for OCR and ElevenLabs for TTS. Allows users to ask AI questions about the book content.",
     techStack: ["MERN", "MongoDB", "Express", "React", "Node", "Firebase", "ElevenLabs", "Tesseract"],
     link: "https://github.com/andi-frame/Maca",
-    images: ["maca_ai.png"],
+    imageCount: 15,
+    thumbnailImage: 1,
+    headerImage: 1,
+    headerImageY: "center",
   },
 ];
 
