@@ -199,7 +199,8 @@ export default function Hero() {
                             {/* Content */}
                             <div className="text-center relative z-10">
                                 <h2 className="text-3xl md:text-5xl font-black tracking-tighter text-white">
-                                    Go with <span className="text-gradient">Han</span>
+                                    Work(s)
+                                    <span className="text-gradient"> by Han</span>
                                 </h2>
                                 <p className="text-white/30 text-[10px] md:text-xs mt-4 font-mono uppercase tracking-widest">↓ Scroll to reveal ↓</p>
                             </div>
