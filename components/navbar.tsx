@@ -68,8 +68,8 @@ export default function Navbar() {
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         className={`pointer-events-auto px-2 py-2 rounded-full border transition-all duration-500 flex items-center gap-1 md:gap-2 ${
            scrolled 
-           ? "bg-white/70 dark:bg-neutral-900/70 backdrop-blur-xl border-neutral-200/50 dark:border-neutral-800/50 shadow-lg shadow-black/5 dark:shadow-black/20" 
-           : "bg-white/30 dark:bg-neutral-900/30 backdrop-blur-sm border-transparent"
+           ? "bg-white/95 md:bg-white/70 dark:bg-neutral-900/95 md:dark:bg-neutral-900/70 md:backdrop-blur-xl border-neutral-200/50 dark:border-neutral-800/50 shadow-lg shadow-black/5 dark:shadow-black/20" 
+           : "bg-white/80 md:bg-white/30 dark:bg-neutral-900/80 md:dark:bg-neutral-900/30 md:backdrop-blur-sm border-transparent"
         }`}
       >
         {/* Desktop Nav Links */}
@@ -139,7 +139,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -20, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="pointer-events-auto absolute top-full left-4 right-4 mt-2 p-4 rounded-2xl bg-white/90 dark:bg-neutral-900/90 backdrop-blur-xl border border-neutral-200/50 dark:border-neutral-800/50 shadow-lg md:hidden"
+            className="pointer-events-auto absolute top-full left-4 right-4 mt-2 p-4 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200/50 dark:border-neutral-800/50 shadow-lg md:hidden"
           >
             <ul className="flex flex-col gap-1">
               {navLinks.map((link, index) => (

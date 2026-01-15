@@ -16,6 +16,9 @@ export default function PetCursor() {
   // Smooth leg animation using motion values
   const legProgress = useMotionValue(0);
   const legAnimationRef = useRef<ReturnType<typeof animate> | null>(null);
+  
+  // Double-tap detection for mobile
+  const lastTapRef = useRef<number>(0);
 
   // Tuned for SLOWER, LAZIER movement
   const springConfig = { damping: 30, stiffness: 70 }; 
@@ -41,6 +44,9 @@ export default function PetCursor() {
     let moveTimeout: NodeJS.Timeout;
 
     const handleMouseMove = (e: MouseEvent) => {
+      // Only track mouse on desktop
+      if (window.innerWidth < 768) return;
+      
       mouseX.set(e.clientX);
       mouseY.set(e.clientY);
       
@@ -69,13 +75,29 @@ export default function PetCursor() {
       }, 150);
     };
 
+    // Mobile: Only move on double-tap
     const handleTouchStart = (e: TouchEvent) => {
-       const touch = e.touches[0];
-       mouseX.set(touch.clientX);
-       mouseY.set(touch.clientY);
-       setIsMoving(true);
-       clearTimeout(moveTimeout);
-       moveTimeout = setTimeout(() => setIsMoving(false), 200);
+      const now = Date.now();
+      const DOUBLE_TAP_DELAY = 300; // ms
+      
+      if (now - lastTapRef.current < DOUBLE_TAP_DELAY) {
+        // Double tap detected - move the cat
+        const touch = e.touches[0];
+        const catX = catPosRef.current.x;
+        
+        // Determine facing direction
+        if (touch.clientX > catX) setIsFacingRight(true);
+        else if (touch.clientX < catX) setIsFacingRight(false);
+        
+        mouseX.set(touch.clientX);
+        mouseY.set(touch.clientY);
+        setIsMoving(true);
+        
+        clearTimeout(moveTimeout);
+        moveTimeout = setTimeout(() => setIsMoving(false), 500);
+      }
+      
+      lastTapRef.current = now;
     };
 
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
@@ -83,8 +105,9 @@ export default function PetCursor() {
     window.addEventListener("resize", checkMobile);
 
     window.addEventListener("mousemove", handleMouseMove);
-    window.addEventListener("touchstart", handleTouchStart); 
+    window.addEventListener("touchstart", handleTouchStart, { passive: true }); 
 
+    // Initialize cat position
     mouseX.set(typeof window !== 'undefined' ? window.innerWidth / 2 : 0);
     mouseY.set(typeof window !== 'undefined' ? window.innerHeight / 2 : 0);
 

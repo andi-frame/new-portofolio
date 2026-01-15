@@ -8,12 +8,14 @@ import About from "@/components/sections/about";
 import Footer from "@/components/sections/footer";
 import Cursor from "@/components/ui/cursor";
 import Background from "@/components/ui/background";
+import DesktopHint from "@/components/ui/desktop-hint";
 
 export default function Home() {
   return (
     <main className="bg-background min-h-screen relative text-foreground">
       <Background />
       <Cursor />
+      <DesktopHint />
       <Navbar />
       
       <Hero />
@@ -24,3 +26,4 @@ export default function Home() {
     </main>
   );
 }
+

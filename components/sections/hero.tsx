@@ -2,11 +2,19 @@
 
 import { profile } from "@/lib/data";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { ArrowDown, Terminal } from "lucide-react";
 
 export default function Hero() {
   const targetRef = useRef<HTMLDivElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
+  
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
   
   const { scrollYProgress } = useScroll({
     target: targetRef,
@@ -56,7 +64,7 @@ export default function Hero() {
     <section 
       ref={targetRef} 
       id="home" 
-      className="relative h-[400vh] bg-background"
+      className={`relative bg-background ${isMobile ? 'h-[200vh]' : 'h-[400vh]'}`}
     >
       <div className="sticky top-0 h-screen w-full flex flex-col items-center justify-center overflow-hidden">
         
@@ -71,8 +79,8 @@ export default function Hero() {
                     scale: scaleTerminal, 
                     opacity: opacityTerminal, 
                     y: yTerminal,
-                    rotateY: rotateYSkew,
-                    rotateX: rotateX,
+                    rotateY: isMobile ? 0 : rotateYSkew,
+                    rotateX: isMobile ? 0 : rotateX,
                     position: "absolute",
                     zIndex: 20
                 }} 
@@ -81,20 +89,22 @@ export default function Hero() {
                 {/* Perspective container for flip */}
                 <div style={{ perspective: "1200px", transformStyle: "preserve-3d" }}>
                     
-                    {/* Orbiting Elements */}
-                    <motion.div 
-                        style={{ rotate: orbitRotate, scale: orbitScale }}
-                        className="absolute inset-0 pointer-events-none"
-                    >
-                        <div className="absolute -top-10 -left-10 text-4xl font-mono text-violet-500/30 animate-pulse">{"{"}</div>
-                        <div className="absolute -top-10 -right-10 text-4xl font-mono text-cyan-500/30 animate-pulse" style={{ animationDelay: '0.5s' }}>{"}"}</div>
-                        <div className="absolute -bottom-10 -left-10 text-4xl font-mono text-violet-500/30 animate-pulse" style={{ animationDelay: '1s' }}>{"<"}</div>
-                        <div className="absolute -bottom-10 -right-10 text-4xl font-mono text-cyan-500/30 animate-pulse" style={{ animationDelay: '1.5s' }}>{"/>"}</div>
-                        <div className="absolute top-1/2 -left-16 w-3 h-3 rounded-full bg-gradient-to-r from-violet-500 to-purple-500 animate-bounce" />
-                        <div className="absolute top-1/2 -right-16 w-3 h-3 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 animate-bounce" style={{ animationDelay: '0.3s' }} />
-                        <div className="absolute -top-14 left-1/2 w-2 h-2 rounded-full bg-gradient-to-r from-violet-500 to-cyan-500 animate-bounce" style={{ animationDelay: '0.6s' }} />
-                        <div className="absolute -bottom-14 left-1/2 w-2 h-2 rounded-full bg-gradient-to-r from-pink-500 to-violet-500 animate-bounce" style={{ animationDelay: '0.9s' }} />
-                    </motion.div>
+                    {/* Orbiting Elements - Desktop only */}
+                    {!isMobile && (
+                      <motion.div 
+                          style={{ rotate: orbitRotate, scale: orbitScale }}
+                          className="absolute inset-0 pointer-events-none"
+                      >
+                          <div className="absolute -top-10 -left-10 text-4xl font-mono text-violet-500/30 animate-pulse">{"{"}</div>
+                          <div className="absolute -top-10 -right-10 text-4xl font-mono text-cyan-500/30 animate-pulse" style={{ animationDelay: '0.5s' }}>{"}"}</div>
+                          <div className="absolute -bottom-10 -left-10 text-4xl font-mono text-violet-500/30 animate-pulse" style={{ animationDelay: '1s' }}>{"<"}</div>
+                          <div className="absolute -bottom-10 -right-10 text-4xl font-mono text-cyan-500/30 animate-pulse" style={{ animationDelay: '1.5s' }}>{"/>"}</div>
+                          <div className="absolute top-1/2 -left-16 w-3 h-3 rounded-full bg-gradient-to-r from-violet-500 to-purple-500 animate-bounce" />
+                          <div className="absolute top-1/2 -right-16 w-3 h-3 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 animate-bounce" style={{ animationDelay: '0.3s' }} />
+                          <div className="absolute -top-14 left-1/2 w-2 h-2 rounded-full bg-gradient-to-r from-violet-500 to-cyan-500 animate-bounce" style={{ animationDelay: '0.6s' }} />
+                          <div className="absolute -bottom-14 left-1/2 w-2 h-2 rounded-full bg-gradient-to-r from-pink-500 to-violet-500 animate-bounce" style={{ animationDelay: '0.9s' }} />
+                      </motion.div>
+                    )}
 
                     {/* Card Container with Flip */}
                     <motion.div 
@@ -111,8 +121,10 @@ export default function Hero() {
                                 borderWidth: '1px'
                             }}
                         >
-                            {/* Glow effect */}
-                            <div className="absolute -inset-1 bg-gradient-to-r from-violet-500/20 via-cyan-500/20 to-violet-500/20 rounded-2xl blur-xl -z-10 animate-pulse" />
+                            {/* Glow effect - desktop only */}
+                            {!isMobile && (
+                              <div className="absolute -inset-1 bg-gradient-to-r from-violet-500/20 via-cyan-500/20 to-violet-500/20 rounded-2xl blur-xl -z-10 animate-pulse" />
+                            )}
                             
                             {/* Terminal header */}
                             <div 
@@ -209,105 +221,118 @@ export default function Hero() {
                 </div>
             </motion.div>
 
-            {/* Animated Background for Introduction Section */}
-            <motion.div 
-                style={{ opacity: opacityText }}
-                className="absolute inset-0 overflow-hidden pointer-events-none"
-            >
-                {/* Animated gradient orbs */}
-                <motion.div 
-                    className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-br from-violet-500/20 to-transparent rounded-full blur-3xl"
-                    animate={{ 
-                        x: [0, 50, 0, -50, 0],
-                        y: [0, -30, 0, 30, 0],
-                        scale: [1, 1.2, 1, 0.9, 1]
-                    }}
-                    transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-                />
-                <motion.div 
-                    className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-to-bl from-cyan-500/20 to-transparent rounded-full blur-3xl"
-                    animate={{ 
-                        x: [0, -40, 0, 40, 0],
-                        y: [0, 40, 0, -40, 0],
-                        scale: [1, 0.9, 1, 1.1, 1]
-                    }}
-                    transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-                />
-                <motion.div 
-                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-violet-500/10 via-transparent to-cyan-500/10 rounded-full blur-3xl"
-                    animate={{ 
-                        rotate: [0, 360],
-                        scale: [1, 1.1, 1]
-                    }}
-                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                />
-                
-                {/* Floating particles */}
-                {[...Array(12)].map((_, i) => (
-                    <motion.div
-                        key={i}
-                        className={`absolute w-2 h-2 rounded-full ${i % 2 === 0 ? 'bg-violet-500/40' : 'bg-cyan-500/40'}`}
-                        style={{
-                            left: `${10 + (i * 7)}%`,
-                            top: `${20 + (i % 4) * 20}%`,
-                        }}
-                        animate={{
-                            y: [0, -30, 0, 30, 0],
-                            x: [0, i % 2 === 0 ? 20 : -20, 0],
-                            opacity: [0.3, 0.7, 0.3],
-                            scale: [1, 1.5, 1]
-                        }}
-                        transition={{
-                            duration: 4 + (i % 3),
-                            repeat: Infinity,
-                            delay: i * 0.3,
-                            ease: "easeInOut"
-                        }}
-                    />
-                ))}
-                
-                {/* Animated grid lines */}
-                <div className="absolute inset-0 opacity-[0.03]">
-                    <motion.div 
-                        className="absolute inset-0"
-                        style={{
-                            backgroundImage: `
-                                linear-gradient(to right, currentColor 1px, transparent 1px),
-                                linear-gradient(to bottom, currentColor 1px, transparent 1px)
-                            `,
-                            backgroundSize: '60px 60px'
-                        }}
-                        animate={{ 
-                            backgroundPosition: ['0px 0px', '60px 60px']
-                        }}
-                        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                    />
-                </div>
-                
-                {/* Radial pulse rings */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                    {[...Array(3)].map((_, i) => (
-                        <motion.div
-                            key={i}
-                            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 border border-violet-500/20 rounded-full"
-                            style={{
-                                width: 200 + i * 150,
-                                height: 200 + i * 150,
-                            }}
-                            animate={{
-                                scale: [1, 1.2, 1],
-                                opacity: [0.3, 0.1, 0.3]
-                            }}
-                            transition={{
-                                duration: 4,
-                                repeat: Infinity,
-                                delay: i * 0.8,
-                                ease: "easeInOut"
-                            }}
-                        />
-                    ))}
-                </div>
-            </motion.div>
+            {/* Animated Background for Introduction Section - Desktop only */}
+            {!isMobile && (
+              <motion.div 
+                  style={{ opacity: opacityText }}
+                  className="absolute inset-0 overflow-hidden pointer-events-none"
+              >
+                  {/* Animated gradient orbs */}
+                  <motion.div 
+                      className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-br from-violet-500/20 to-transparent rounded-full blur-3xl"
+                      animate={{ 
+                          x: [0, 50, 0, -50, 0],
+                          y: [0, -30, 0, 30, 0],
+                          scale: [1, 1.2, 1, 0.9, 1]
+                      }}
+                      transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+                  />
+                  <motion.div 
+                      className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-to-bl from-cyan-500/20 to-transparent rounded-full blur-3xl"
+                      animate={{ 
+                          x: [0, -40, 0, 40, 0],
+                          y: [0, 40, 0, -40, 0],
+                          scale: [1, 0.9, 1, 1.1, 1]
+                      }}
+                      transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+                  />
+                  <motion.div 
+                      className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-violet-500/10 via-transparent to-cyan-500/10 rounded-full blur-3xl"
+                      animate={{ 
+                          rotate: [0, 360],
+                          scale: [1, 1.1, 1]
+                      }}
+                      transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                  />
+                  
+                  {/* Floating particles - Desktop only */}
+                  {[...Array(12)].map((_, i) => (
+                      <motion.div
+                          key={i}
+                          className={`absolute w-2 h-2 rounded-full ${i % 2 === 0 ? 'bg-violet-500/40' : 'bg-cyan-500/40'}`}
+                          style={{
+                              left: `${10 + (i * 7)}%`,
+                              top: `${20 + (i % 4) * 20}%`,
+                          }}
+                          animate={{
+                              y: [0, -30, 0, 30, 0],
+                              x: [0, i % 2 === 0 ? 20 : -20, 0],
+                              opacity: [0.3, 0.7, 0.3],
+                              scale: [1, 1.5, 1]
+                          }}
+                          transition={{
+                              duration: 4 + (i % 3),
+                              repeat: Infinity,
+                              delay: i * 0.3,
+                              ease: "easeInOut"
+                          }}
+                      />
+                  ))}
+                  
+                  {/* Animated grid lines */}
+                  <div className="absolute inset-0 opacity-[0.03]">
+                      <motion.div 
+                          className="absolute inset-0"
+                          style={{
+                              backgroundImage: `
+                                  linear-gradient(to right, currentColor 1px, transparent 1px),
+                                  linear-gradient(to bottom, currentColor 1px, transparent 1px)
+                              `,
+                              backgroundSize: '60px 60px'
+                          }}
+                          animate={{ 
+                              backgroundPosition: ['0px 0px', '60px 60px']
+                          }}
+                          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                      />
+                  </div>
+                  
+                  {/* Radial pulse rings */}
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                      {[...Array(3)].map((_, i) => (
+                          <motion.div
+                              key={i}
+                              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 border border-violet-500/20 rounded-full"
+                              style={{
+                                  width: 200 + i * 150,
+                                  height: 200 + i * 150,
+                              }}
+                              animate={{
+                                  scale: [1, 1.2, 1],
+                                  opacity: [0.3, 0.1, 0.3]
+                              }}
+                              transition={{
+                                  duration: 4,
+                                  repeat: Infinity,
+                                  delay: i * 0.8,
+                                  ease: "easeInOut"
+                              }}
+                          />
+                      ))}
+                  </div>
+              </motion.div>
+            )}
+            
+            {/* Simple gradient for mobile */}
+            {isMobile && (
+              <motion.div 
+                  style={{ opacity: opacityText }}
+                  className="absolute inset-0 overflow-hidden pointer-events-none"
+              >
+                  <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-gradient-to-br from-violet-500/15 to-transparent rounded-full blur-3xl" />
+                  <div className="absolute bottom-1/4 right-1/4 w-56 h-56 bg-gradient-to-bl from-cyan-500/15 to-transparent rounded-full blur-3xl" />
+              </motion.div>
+            )}
 
             {/* Introduction */}
             <motion.div 

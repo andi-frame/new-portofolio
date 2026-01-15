@@ -1,12 +1,37 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
 
 interface SectionBackgroundProps {
   variant: "experience" | "projects" | "about" | "footer";
 }
 
 export default function SectionBackground({ variant }: SectionBackgroundProps) {
+  const [isMobile, setIsMobile] = useState(false);
+  
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  // Mobile: Simple static gradients only, no animations/particles
+  if (isMobile) {
+    return (
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Simple static gradient orbs */}
+        <div className="absolute -top-20 -left-20 w-[300px] h-[300px] bg-gradient-to-br from-violet-500/10 to-purple-500/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 -right-20 w-[250px] h-[250px] bg-gradient-to-bl from-cyan-500/8 to-blue-500/5 rounded-full blur-3xl" />
+        
+        {/* Gradient transitions */}
+        <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-background to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background to-transparent" />
+      </div>
+    );
+  }
+
   if (variant === "experience") {
     return (
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -30,7 +55,7 @@ export default function SectionBackground({ variant }: SectionBackgroundProps) {
           transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
         />
         
-        {/* Floating particles */}
+        {/* Floating particles - desktop only */}
         {[...Array(8)].map((_, i) => (
           <motion.div
             key={i}
@@ -99,7 +124,7 @@ export default function SectionBackground({ variant }: SectionBackgroundProps) {
           transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }}
         />
         
-        {/* Floating code symbols */}
+        {/* Floating code symbols - desktop only */}
         {['<', '/', '>', '{', '}', '(', ')'].map((symbol, i) => (
           <motion.div
             key={i}
@@ -162,7 +187,7 @@ export default function SectionBackground({ variant }: SectionBackgroundProps) {
           transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
         />
         
-        {/* Floating skill icons */}
+        {/* Floating skill icons - desktop only */}
         {[...Array(10)].map((_, i) => (
           <motion.div
             key={i}
@@ -186,7 +211,7 @@ export default function SectionBackground({ variant }: SectionBackgroundProps) {
           />
         ))}
         
-        {/* Pulsing rings */}
+        {/* Pulsing rings - desktop only */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
           {[...Array(3)].map((_, i) => (
             <motion.div
@@ -229,7 +254,7 @@ export default function SectionBackground({ variant }: SectionBackgroundProps) {
           transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
         />
         
-        {/* Subtle stars */}
+        {/* Subtle stars - desktop only */}
         {[...Array(15)].map((_, i) => (
           <motion.div
             key={i}

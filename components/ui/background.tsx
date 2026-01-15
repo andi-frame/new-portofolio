@@ -5,32 +5,68 @@ import { motion, useScroll, useTransform } from "framer-motion";
 
 export default function Background() {
   const [mounted, setMounted] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const [mousePos, setMousePos] = useState({ x: typeof window !== 'undefined' ? window.innerWidth / 2 : 500, y: typeof window !== 'undefined' ? window.innerHeight / 2 : 500 });
   
   const { scrollYProgress } = useScroll();
   
-  // Parallax effects for orbs
+  // Parallax effects for orbs - desktop only
   const orbY1 = useTransform(scrollYProgress, [0, 1], [0, -200]);
   const orbY2 = useTransform(scrollYProgress, [0, 1], [0, 150]);
   const orbY3 = useTransform(scrollYProgress, [0, 1], [0, -100]);
 
   useEffect(() => {
     setMounted(true);
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    
     setMousePos({ x: window.innerWidth / 2, y: window.innerHeight / 2 });
     
+    // Only track mouse on desktop
     const handleMouseMove = (e: MouseEvent) => {
-      setMousePos({ x: e.clientX, y: e.clientY });
+      if (window.innerWidth >= 768) {
+        setMousePos({ x: e.clientX, y: e.clientY });
+      }
     };
     
+    window.addEventListener("resize", checkMobile);
     window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+    return () => {
+      window.removeEventListener("resize", checkMobile);
+      window.removeEventListener("mousemove", handleMouseMove);
+    };
   }, []);
 
   if (!mounted) return null;
 
+  // Mobile: Simple static background, no mouse tracking, no blur
+  if (isMobile) {
+    return (
+      <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
+        {/* Simple static gradient orbs */}
+        <div className="absolute -top-40 -left-40 w-[400px] h-[400px] bg-gradient-to-br from-violet-500/10 to-purple-500/5 rounded-full blur-2xl" />
+        <div className="absolute top-1/4 -right-40 w-[350px] h-[350px] bg-gradient-to-bl from-cyan-500/8 to-blue-500/5 rounded-full blur-2xl" />
+        <div className="absolute bottom-1/4 left-1/4 w-[300px] h-[300px] bg-gradient-to-tr from-pink-500/6 to-rose-500/3 rounded-full blur-2xl" />
+        
+        {/* Static noise grain overlay */}
+        <div 
+          className="absolute inset-0 opacity-[0.015] dark:opacity-[0.025]"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+          }}
+        />
+        
+        {/* Top and bottom fade */}
+        <div className="absolute top-0 left-0 right-0 h-40 bg-gradient-to-b from-background to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-background to-transparent" />
+      </div>
+    );
+  }
+
+  // Desktop: Full animations
   return (
     <>
-      {/* Cursor-following spotlight */}
+      {/* Cursor-following spotlight - desktop only */}
       <div 
         className="fixed pointer-events-none z-0"
         style={{

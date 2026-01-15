@@ -271,7 +271,7 @@ function ProjectCard({ project, index, onOpen }: { project: Project, index: numb
           
           {/* Hover Overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity duration-500 flex items-end justify-center pb-8">
-            <div className="flex items-center gap-2 px-6 py-3 bg-white/90 dark:bg-black/90 backdrop-blur-md rounded-full text-xs font-bold uppercase tracking-widest shadow-xl">
+            <div className="flex items-center gap-2 px-6 py-3 bg-white/95 md:bg-white/90 dark:bg-black/95 md:dark:bg-black/90 md:backdrop-blur-md rounded-full text-xs font-bold uppercase tracking-widest shadow-xl">
               <Eye className="w-4 h-4" /> View Details
             </div>
           </div>
@@ -332,7 +332,7 @@ function ProjectModal({ project, onClose }: { project: Project, onClose: () => v
         animate={{ opacity: 1 }} 
         exit={{ opacity: 0 }}
         onClick={onClose}
-        className="absolute inset-0 bg-black/70 backdrop-blur-md"
+        className="absolute inset-0 bg-black/85 md:bg-black/70 md:backdrop-blur-md"
       />
       <motion.div 
         layoutId={`project-${project.id}`}
@@ -357,7 +357,7 @@ function ProjectModal({ project, onClose }: { project: Project, onClose: () => v
           
           <motion.button 
             onClick={onClose} 
-            className="absolute top-4 right-4 p-3 rounded-full bg-white/20 hover:bg-white/30 text-white backdrop-blur-md transition-colors z-20"
+            className="absolute top-4 right-4 p-3 rounded-full bg-white/30 md:bg-white/20 hover:bg-white/40 md:hover:bg-white/30 text-white md:backdrop-blur-md transition-colors z-20"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
           >

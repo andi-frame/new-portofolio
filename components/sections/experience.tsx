@@ -160,7 +160,7 @@ export default function Experience() {
                   {/* Content Card */}
                   <div className={`w-full md:w-[45%] pl-12 md:pl-0 ${index % 2 === 0 ? "md:pr-12" : "md:pl-12 md:ml-auto"}`}>
                     <motion.div 
-                      className="relative p-6 rounded-2xl bg-white/50 dark:bg-neutral-900/50 backdrop-blur-sm border border-neutral-200/50 dark:border-neutral-800/50 shadow-sm hover:shadow-xl hover:border-violet-300/50 dark:hover:border-violet-700/50 transition-all duration-500 group-hover:-translate-y-1"
+                      className="relative p-6 rounded-2xl bg-white/90 md:bg-white/50 dark:bg-neutral-900/95 md:dark:bg-neutral-900/50 md:backdrop-blur-sm border border-neutral-200/50 dark:border-neutral-800/50 shadow-sm hover:shadow-xl hover:border-violet-300/50 dark:hover:border-violet-700/50 transition-all duration-500 group-hover:-translate-y-1"
                       whileHover={{ scale: 1.02 }}
                       transition={{ type: "spring", stiffness: 300 }}
                     >
@@ -277,7 +277,7 @@ export default function Experience() {
               animate={{ opacity: 1 }} 
               exit={{ opacity: 0 }}
               onClick={() => setSelectedExp(null)}
-              className="absolute inset-0 bg-black/60 backdrop-blur-md"
+              className="absolute inset-0 bg-black/80 md:bg-black/60 md:backdrop-blur-md"
             />
             <motion.div 
               layoutId={`exp-${selectedExp.id}`}
